@@ -1,10 +1,17 @@
 import React from "react";
 import styles from "../styles/CountryCard.module.css";
+import Image from "next/image";
 
-export default function CountryCard({ country, onClick }) {
+export default function CountryCard({ country, onClick, onCardClick }) {
   return (
-    <div className={styles.card} onClick={() => onClick(country)}>
-      <img
+    <div className={styles.card} onClick={() => {
+      if (onCardClick) onCardClick(country); 
+        if (onClick) onClick();
+      }}
+      >
+        <Image
+        width={200}
+        height={200}
         src={country.flags.png}
         alt={`Bandeira de ${country.translations.por.common}`}
         className={styles.flag}
